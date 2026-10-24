@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+/* Design tokens from "SAI Suraksha Website.dc.html" */
+@theme {
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --color-forest: #0a3922;
+  --color-forest-hover: #134a30;
+  --color-violet: #460095;
+  --color-lavender: #eee2ff;
+  --color-orchid: #fdf0ff;
+  --color-mint: #d2f2e3;
+  --color-mint-soft: #e4f7ee;
+  --color-sky: #ccf0f8;
+  --color-teal-ink: #003642;
+  --color-cream: #faf7e8;
+  --color-peach: #ffede8;
+  --color-coral: #ff643b;
+  --color-coral-hover: #ff7a57;
+  --color-leaf: #1dbf73;
+  --color-ink: #3d3d3d;
+  --color-line: #e0e0e0;
+  --color-bubble: #dcf8c6;
+  --color-muted: #7a7a7a;
+  --color-dot-off: #a6a6a6;
+  --color-placeholder: #f2f2f2;
+
+  /* The design sets font sizes only; line height stays "normal" unless stated */
+  --text-base--line-height: normal;
+  --text-lg--line-height: normal;
+  --text-xl--line-height: normal;
+  --text-2xl--line-height: normal;
+
+  --tracking-tight-1: -0.019em;
+  --tracking-tight-2: -0.028em;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    line-height: normal;
+  }
+  body {
+    background: var(--color-lavender);
+    color: #000;
+    font-family: var(--font-sans);
+    font-feature-settings: "ss03";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a {
+    color: var(--color-forest);
+    text-decoration-line: underline;
+    text-underline-offset: 4px;
+  }
+  a:hover {
+    color: var(--color-violet);
+  }
+  button,
+  input {
+    font-family: inherit;
+    font-feature-settings: "ss03";
+  }
+  button {
+    cursor: pointer;
+  }
+}
+
+/* Shared layout from the design: 1280px wrapper with fluid side gutters */
+@utility wrap {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 80px);
+}
+
+/* Standard section vertical rhythm */
+@utility section-y {
+  padding-block: clamp(64px, 8vw, 112px);
+}
