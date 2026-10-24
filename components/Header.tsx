@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NAV, PHONE_SHORT, TEL_HREF } from "@/lib/site";
 import { Photo } from "@/components/ui/Photo";
 
@@ -13,8 +13,21 @@ export function Header() {
   const close = () => setMenuOpen(false);
   const active = (href: string) => (pathname === href ? "bg-lavender" : "bg-transparent");
 
+  // Soft shadow once the page scrolls, so the sticky header separates from the content under it.
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-white">
+    <header
+      className={`sticky top-0 z-50 border-b border-line bg-white transition-shadow duration-200 ${
+        scrolled ? "shadow-[0_6px_20px_-12px_rgba(10,57,34,0.35)]" : ""
+      }`}
+    >
       <div className="wrap flex items-center justify-between gap-5 py-3">
         <Link href="/" onClick={close} className="flex min-w-0 items-center gap-3 text-forest no-underline">
           <Photo
@@ -69,7 +82,7 @@ export function Header() {
         <nav
           id="mobile-menu"
           aria-label="Main"
-          className="flex flex-col gap-1 border-t border-line bg-white px-[clamp(20px,5vw,80px)] pt-2 pb-5 min-[1180px]:hidden"
+          className="flex flex-col gap-1 border-t border-line bg-white px-[clamp(20px,5vw,80px)] pt-2 pb-5 motion-safe:animate-[menu-in_180ms_ease-out] min-[1180px]:hidden"
         >
           {NAV.map((item) => (
             <Link

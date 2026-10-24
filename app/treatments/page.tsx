@@ -120,7 +120,7 @@ function AskCard({
 }) {
   return (
     <article className={`flex flex-col gap-3 rounded-3xl ${className}`}>
-      <h3 className={`${titleSize} leading-[1.2] font-bold tracking-tight-1 text-forest`}>{title}</h3>
+      <h3 className={`${titleSize} leading-[1.2] font-bold tracking-tight-1 text-balance text-forest`}>{title}</h3>
       <p className="flex-1 text-lg leading-normal text-ink">{text}</p>
       <ArrowLink href={waAbout(topic)} external>
         {link}
@@ -141,15 +141,15 @@ export default function TreatmentsPage() {
       />
 
       <section className="bg-lavender">
-        <div className="wrap section-y flex flex-col gap-8">
+        <div className="wrap section-y flex flex-col gap-10">
           <SubHeading>Most common</SubHeading>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-4">
+          <div data-stagger className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-4">
             {COMMON.map((c) => (
               <AskCard key={c.title} {...c} className={`p-8 ${c.bg}`} titleSize="text-[26px]" />
             ))}
           </div>
-          <SubHeading className="mt-8">Also treated</SubHeading>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-4">
+          <SubHeading className="mt-6">Also treated</SubHeading>
+          <div data-stagger className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-4">
             {ALSO.map((c) => (
               <AskCard key={c.title} {...c} link="Ask about this →" className="bg-white p-7" titleSize="text-2xl" />
             ))}
@@ -162,11 +162,11 @@ export default function TreatmentsPage() {
           <SectionHeading label="Treatments" headingClass="text-violet">
             How we treat
           </SectionHeading>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-4">
+          <div data-stagger className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-4">
             {METHODS.map((m, i) => (
               <article key={m.title} className={`flex flex-col gap-3 rounded-3xl p-8 ${m.bg}`}>
                 <span className="text-base font-bold text-violet">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="text-[26px] leading-[1.2] font-bold tracking-tight-1 text-forest">{m.title}</h3>
+                <h3 className="text-[26px] leading-[1.2] font-bold tracking-tight-1 text-balance text-forest">{m.title}</h3>
                 <p className="text-lg leading-normal text-ink">{m.text}</p>
               </article>
             ))}

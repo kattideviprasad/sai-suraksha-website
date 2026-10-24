@@ -3,6 +3,7 @@ import { Photo } from "@/components/ui/Photo";
 import { Pill } from "@/components/ui/Pill";
 import { ArrowLink, H2, InfoCard, SectionHeading } from "@/components/ui/SectionHeading";
 import { OpenStatusLabel } from "@/components/OpenStatus";
+import { Testimonials } from "@/components/Testimonials";
 import { BOOKING_MESSAGE, MAPS_REVIEWS_URL } from "@/lib/site";
 import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
@@ -71,20 +72,29 @@ function Stars({ className }: { className: string }) {
 function RatingCard({
   source,
   count,
+  suffix,
   bg,
   ink,
 }: {
   source: string;
-  count: string;
+  count: number;
+  suffix: string;
   bg: string;
   ink: string;
 }) {
   return (
     <div className={`flex flex-col gap-1.5 rounded-3xl p-7 ${bg}`}>
       <span className={`text-lg font-semibold ${ink}`}>{source}</span>
-      <span className={`text-[56px] leading-none font-semibold tracking-tight-2 ${ink}`}>5.0</span>
+      <span data-count className={`text-[56px] leading-none font-semibold tracking-tight-2 tabular-nums ${ink}`}>
+        5.0
+      </span>
       <Stars className={`text-xl ${ink}`} />
-      <span className="text-lg text-ink">{count}</span>
+      <span className="text-lg text-ink">
+        <span data-count className="tabular-nums">
+          {count}
+        </span>{" "}
+        {suffix}
+      </span>
     </div>
   );
 }
@@ -96,7 +106,9 @@ export default function HomePage() {
       <section className="bg-forest text-white">
         <div className="wrap grid grid-cols-[repeat(auto-fit,minmax(min(100%,460px),1fr))] items-center gap-[clamp(40px,5vw,72px)] pt-[clamp(48px,7vw,96px)] pb-[clamp(64px,8vw,112px)]">
           <div className="flex min-w-0 flex-col gap-7">
-            <Pill className="bg-mint text-forest">Kompally, Hyderabad · Since 2017</Pill>
+            <Pill data-hero className="bg-mint text-forest">
+              Kompally, Hyderabad · Since 2017
+            </Pill>
             <h1 className="text-[clamp(52px,7.4vw,104px)] leading-[0.98] font-medium tracking-tight-2 text-balance">
               Recover <span className="text-leaf">without surgery</span>
             </h1>
@@ -105,8 +117,10 @@ export default function HomePage() {
               Charan finds the root cause, explains it in plain words, and treats it with hands-on therapy and
               exercise, avoiding surgery wherever possible.
             </p>
-            <BookingButtons />
-            <p className="flex flex-wrap items-center gap-x-3 gap-y-2 text-lg leading-[1.4] text-mint">
+            <div data-hero-cta>
+              <BookingButtons />
+            </div>
+            <p data-hero className="flex flex-wrap items-center gap-x-3 gap-y-2 text-lg leading-[1.4] text-mint">
               <span className="flex items-center gap-2.5 font-semibold text-white">
                 <OpenStatusLabel />
               </span>
@@ -114,18 +128,30 @@ export default function HomePage() {
             </p>
           </div>
           <div className="relative min-w-0">
-            <Photo
-              name="clinicHall"
-              alt="The treatment hall at SAI Suraksha, with an exercise chair, pulley system and glass-walled cabins"
-              className="aspect-[4/3.3] w-full rounded-3xl object-cover"
-              sizes="(min-width: 1280px) 560px, (min-width: 1100px) 45vw, 100vw"
-              priority
-            />
-            <div className="absolute bottom-4 left-4 flex items-center gap-3.5 rounded-2xl bg-white px-5 py-4 text-black">
-              <span className="text-[44px] leading-none font-semibold tracking-tight-2 text-forest">5.0</span>
+            <div data-hero-photo className="overflow-hidden rounded-3xl">
+              <Photo
+                name="clinicHall"
+                alt="The treatment hall at SAI Suraksha, with an exercise chair, pulley system and glass-walled cabins"
+                className="aspect-[4/3.3] w-full rounded-3xl object-cover"
+                sizes="(min-width: 1280px) 560px, (min-width: 1100px) 45vw, 100vw"
+                priority
+              />
+            </div>
+            <div
+              data-hero
+              className="absolute bottom-4 left-4 flex items-center gap-3.5 rounded-2xl bg-white px-5 py-4 text-black"
+            >
+              <span data-count className="text-[44px] leading-none font-semibold tracking-tight-2 text-forest tabular-nums">
+                5.0
+              </span>
               <span className="flex flex-col gap-0.5">
                 <Stars className="text-lg text-forest" />
-                <span className="text-base font-medium text-ink">202 Google reviews</span>
+                <span className="text-base font-medium text-ink">
+                  <span data-count className="tabular-nums">
+                    202
+                  </span>{" "}
+                  Google reviews
+                </span>
               </span>
             </div>
             <div className="absolute top-4 right-4 hidden w-[min(300px,64%)] flex-col gap-2.5 rounded-2xl bg-white p-3.5 text-black min-[760px]:flex">
@@ -142,9 +168,9 @@ export default function HomePage() {
       </section>
 
       {/* Reviews */}
-      <section className="bg-white">
-        <div className="wrap section-y grid grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] items-start gap-[clamp(32px,5vw,72px)]">
-          <div className="flex flex-col gap-5">
+      <section className="section-y flex flex-col gap-[clamp(40px,5vw,64px)] bg-white">
+        <div className="wrap grid w-full grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] items-start gap-[clamp(32px,5vw,72px)]">
+          <div data-reveal className="flex flex-col gap-5">
             <Pill>What patients say</Pill>
             <H2>201 of 202 Google reviews give five stars.</H2>
             <p className="max-w-[520px] text-xl leading-normal text-pretty text-ink">
@@ -154,10 +180,10 @@ export default function HomePage() {
               Read the reviews on Google →
             </ArrowLink>
           </div>
-          <div className="flex flex-col gap-4">
+          <div data-stagger className="flex flex-col gap-4">
             <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
-              <RatingCard source="Google" count="202 reviews" bg="bg-mint" ink="text-forest" />
-              <RatingCard source="Justdial" count="227 reviews · Verified" bg="bg-sky" ink="text-teal-ink" />
+              <RatingCard source="Google" count={202} suffix="reviews" bg="bg-mint" ink="text-forest" />
+              <RatingCard source="Justdial" count={227} suffix="reviews · Verified" bg="bg-sky" ink="text-teal-ink" />
             </div>
             <div className="flex flex-col gap-4 rounded-3xl bg-cream p-7">
               <span className="text-lg font-semibold text-forest">What patients mention most</span>
@@ -171,6 +197,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+        <Testimonials />
       </section>
 
       {/* What we treat */}
@@ -182,7 +209,7 @@ export default function HomePage() {
             </SectionHeading>
             <ArrowLink href="/treatments">All conditions &amp; treatments →</ArrowLink>
           </div>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,270px),1fr))] gap-4">
+          <div data-stagger className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,270px),1fr))] gap-4">
             {CONDITIONS.map((c) => (
               <InfoCard key={c.title} title={c.title} className={c.bg} gap="gap-2.5">
                 {c.text}
@@ -205,11 +232,11 @@ export default function HomePage() {
       {/* How your visit works */}
       <section className="bg-white">
         <div className="wrap section-y grid grid-cols-[repeat(auto-fit,minmax(min(100%,440px),1fr))] items-center gap-[clamp(40px,5vw,80px)]">
-          <div className="flex flex-col gap-9">
+          <div className="flex flex-col gap-10">
             <SectionHeading label="Our approach" headingClass="text-violet" className="">
               How your visit works
             </SectionHeading>
-            <ol className="flex flex-col gap-7">
+            <ol data-stagger className="flex flex-col gap-7">
               {STEPS.map((s, i) => (
                 <li key={s.title} className="flex items-start gap-5">
                   <span className="flex size-11 flex-none items-center justify-center rounded-full bg-violet text-xl font-bold text-white">
@@ -224,12 +251,14 @@ export default function HomePage() {
             </ol>
           </div>
           <div className="relative min-w-0">
-            <Photo
-              name="consultationRoom"
-              alt="Glass-walled consultation room with a spine model on the desk"
-              className="aspect-[1/1.05] w-full rounded-3xl object-cover"
-              sizes="(min-width: 1280px) 560px, (min-width: 1100px) 45vw, 100vw"
-            />
+            <div data-parallax className="overflow-hidden rounded-3xl">
+              <Photo
+                name="consultationRoom"
+                alt="Glass-walled consultation room with a spine model on the desk"
+                className="aspect-[1/1.05] w-full rounded-3xl object-cover"
+                sizes="(min-width: 1280px) 560px, (min-width: 1100px) 45vw, 100vw"
+              />
+            </div>
             <Pill className="absolute bottom-4 left-4 bg-white text-forest">Consultation room</Pill>
           </div>
         </div>
@@ -249,7 +278,7 @@ export default function HomePage() {
               quickly they recovered.
             </p>
           </div>
-          <div className="flex flex-col gap-5 rounded-3xl bg-white p-[clamp(24px,3vw,40px)]">
+          <div data-reveal className="flex flex-col gap-5 rounded-3xl bg-white p-[clamp(24px,3vw,40px)]">
             {DOCTOR_POINTS.map((p) => (
               <div key={p} className="flex items-center gap-4 text-xl font-medium text-forest">
                 <span className="flex size-9 flex-none items-center justify-center rounded-full bg-mint text-lg font-bold">
@@ -273,21 +302,25 @@ export default function HomePage() {
           </SectionHeading>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,380px),1fr))] gap-4">
             <figure className="flex flex-col gap-3">
-              <Photo
-                name="waitingArea"
-                alt="Bright waiting area with chairs and a television"
-                className="aspect-[4/3] w-full rounded-3xl object-cover"
-                sizes="(min-width: 1280px) 552px, (min-width: 900px) 45vw, 100vw"
-              />
+              <div data-parallax className="overflow-hidden rounded-3xl">
+                <Photo
+                  name="waitingArea"
+                  alt="Bright waiting area with chairs and a television"
+                  className="aspect-[4/3] w-full rounded-3xl object-cover"
+                  sizes="(min-width: 1280px) 552px, (min-width: 900px) 45vw, 100vw"
+                />
+              </div>
               <figcaption className="text-lg font-semibold text-forest">Waiting area</figcaption>
             </figure>
             <figure className="flex flex-col gap-3">
-              <Photo
-                name="treatmentCubicles"
-                alt="Curtained treatment cubicles with therapy equipment"
-                className="aspect-[4/3] w-full rounded-3xl object-cover"
-                sizes="(min-width: 1280px) 552px, (min-width: 900px) 45vw, 100vw"
-              />
+              <div data-parallax className="overflow-hidden rounded-3xl">
+                <Photo
+                  name="treatmentCubicles"
+                  alt="Curtained treatment cubicles with therapy equipment"
+                  className="aspect-[4/3] w-full rounded-3xl object-cover"
+                  sizes="(min-width: 1280px) 552px, (min-width: 900px) 45vw, 100vw"
+                />
+              </div>
               <figcaption className="text-lg font-semibold text-forest">Private treatment cubicles</figcaption>
             </figure>
           </div>

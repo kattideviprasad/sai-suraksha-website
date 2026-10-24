@@ -1,7 +1,7 @@
 import { BOOKING_MESSAGE, PHONE_SHORT, TEL_HREF, waLink } from "@/lib/site";
 
 const base =
-  "inline-flex min-h-[60px] items-center justify-center rounded-[40px] px-8 py-3.5 text-xl no-underline";
+  "inline-flex min-h-[60px] items-center justify-center rounded-[40px] px-8 py-3.5 text-xl no-underline motion-safe:active:scale-[0.98]";
 
 /** The coral primary button. */
 export const primaryBtn = `${base} bg-coral font-bold text-forest hover:bg-coral-hover hover:text-forest`;

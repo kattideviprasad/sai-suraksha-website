@@ -35,10 +35,35 @@
   --tracking-tight-2: -0.028em;
 }
 
+/* Magic UI marquee. `inline` so var(--duration) resolves on the marquee element itself;
+   in a plain @theme it resolves at :root, where it is undefined, and the animation never runs. */
+@theme inline {
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+}
+
 @layer base {
   html {
-    scroll-behavior: smooth;
     line-height: normal;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+    /* Calm state changes on every link, button and field */
+    a,
+    button,
+    input {
+      transition-property: color, background-color, border-color, text-decoration-color, transform, box-shadow;
+      transition-duration: 150ms;
+      transition-timing-function: ease-out;
+    }
+  }
+  /* Two-tone focus ring (white inner, forest outer) reads on both the dark green and the light sections */
+  :focus-visible {
+    outline: 3px solid var(--color-forest);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px #fff;
   }
   body {
     background: var(--color-lavender);
@@ -63,6 +88,52 @@
   }
   button {
     cursor: pointer;
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}
+
+/* Hero intro (components/PageMotion.tsx). Pre-hidden only while html.js-motion is set by the
+   inline head script; if the motion bundle never arrives, the fallback reveals them after 1.2s.
+   The booking buttons are never hidden: only nudged (transform), so they are tappable at first paint. */
+html.js-motion:not(.motion-ready) [data-hero] {
+  opacity: 0;
+  animation: hero-fallback 0.6s ease 1.2s forwards;
+}
+html.js-motion:not(.motion-ready) [data-hero-cta] {
+  transform: translateY(8px) scale(0.98);
+  animation: hero-fallback 0.6s ease 1.2s forwards;
+}
+html.js-motion:not(.motion-ready) [data-hero-photo] img {
+  transform: scale(1.03);
+  animation: hero-fallback 0.6s ease 1.2s forwards;
+}
+@keyframes hero-fallback {
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 

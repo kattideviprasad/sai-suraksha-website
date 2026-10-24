@@ -137,7 +137,7 @@ export default function AboutPage() {
           <SectionHeading label="Our values" labelClass="bg-white text-violet" headingClass="text-violet">
             What we stand for
           </SectionHeading>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-4">
+          <div data-stagger className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-4">
             {VALUES.map((v) => (
               <InfoCard key={v.title} title={v.title} className={v.bg}>
                 {v.text}
@@ -155,12 +155,14 @@ export default function AboutPage() {
           <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,380px),1fr))] gap-4">
             {GALLERY.map((g) => (
               <figure key={g.name} className="flex flex-col gap-3">
-                <Photo
-                  name={g.name}
-                  alt={g.alt}
-                  className="aspect-[4/3] w-full rounded-3xl object-cover"
-                  sizes="(min-width: 1280px) 552px, (min-width: 900px) 45vw, 100vw"
-                />
+                <div data-parallax className="overflow-hidden rounded-3xl">
+                  <Photo
+                    name={g.name}
+                    alt={g.alt}
+                    className="aspect-[4/3] w-full rounded-3xl object-cover"
+                    sizes="(min-width: 1280px) 552px, (min-width: 900px) 45vw, 100vw"
+                  />
+                </div>
                 <figcaption className="text-lg font-semibold text-forest">{g.caption}</figcaption>
               </figure>
             ))}

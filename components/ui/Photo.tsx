@@ -32,7 +32,8 @@ export function Photo({
       src={SRC[name]}
       alt={alt}
       sizes={sizes}
-      className={className}
+      // Hairline inner edge keeps light photos from bleeding into white sections
+      className={name === "logo" ? className : `${className} outline-1 -outline-offset-1 outline-black/[0.06]`}
       quality={80}
       placeholder={name === "logo" ? "empty" : "blur"}
       {...(priority ? { loading: "eager" as const, fetchPriority: "high" as const } : {})}

@@ -17,7 +17,7 @@ export function SectionHeading({
   className?: string;
 }) {
   return (
-    <div className={`flex flex-col gap-5 ${className}`}>
+    <div data-reveal className={`flex flex-col gap-5 ${className}`}>
       <Pill className={labelClass}>{label}</Pill>
       <H2 className={headingClass}>{children}</H2>
     </div>
@@ -53,7 +53,9 @@ export function PageHero({
   return (
     <section className="bg-forest text-white">
       <div className="wrap flex flex-col gap-6 py-[clamp(48px,6vw,88px)]">
-        <Pill className="bg-mint text-forest">{label}</Pill>
+        <Pill data-hero className="bg-mint text-forest">
+          {label}
+        </Pill>
         <h1
           className={`text-[clamp(48px,6.6vw,96px)] leading-none font-medium tracking-tight-2 text-balance ${titleMax}`}
         >
@@ -82,8 +84,8 @@ export function InfoCard({
 }) {
   return (
     <article className={`flex flex-col rounded-3xl p-8 ${gap} ${className}`}>
-      <h3 className="text-[26px] leading-[1.2] font-bold tracking-tight-1 text-forest">{title}</h3>
-      <p className="text-lg leading-normal text-ink">{children}</p>
+      <h3 className="text-[26px] leading-[1.2] font-bold tracking-tight-1 text-balance text-forest">{title}</h3>
+      <p className="text-lg leading-normal text-pretty text-ink">{children}</p>
     </article>
   );
 }

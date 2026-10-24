@@ -16,7 +16,7 @@ export function Footer() {
         </div>
         <div className="flex flex-col gap-2.5">
           <span className="text-base font-bold text-violet">Contact &amp; hours</span>
-          <a href={TEL_HREF} className="text-lg font-semibold text-forest">
+          <a href={TEL_HREF} className="text-lg font-semibold text-forest tabular-nums">
             {PHONE_DISPLAY}
           </a>
           <a href={waLink()} target="_blank" rel="noopener" className="text-[17px] text-forest">

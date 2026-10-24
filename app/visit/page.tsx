@@ -22,7 +22,7 @@ export default function VisitPage() {
         accent="appointment"
         intro="Send us a WhatsApp message or call +91 98491 51375. Open Monday to Saturday, 9:30 AM–1 PM and 5–9 PM."
       >
-        <p className="flex items-center gap-2.5 text-lg font-semibold text-white">
+        <p data-hero className="flex items-center gap-2.5 text-lg font-semibold text-white">
           <OpenStatusLabel />
         </p>
       </PageHero>
@@ -36,10 +36,10 @@ export default function VisitPage() {
       <section className="bg-white">
         <div className="wrap section-y flex flex-col gap-6">
           <H2 className="mb-4 text-forest">Find us</H2>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-4">
+          <div data-stagger className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-4">
             <article className="flex flex-col gap-3 rounded-3xl bg-mint p-8">
               <span className="text-lg font-semibold text-forest">Phone &amp; WhatsApp</span>
-              <a href={TEL_HREF} className="text-[30px] font-bold tracking-tight-1 text-forest no-underline">
+              <a href={TEL_HREF} className="text-[30px] font-bold tracking-tight-1 text-forest tabular-nums no-underline">
                 {PHONE_DISPLAY}
               </a>
               <div className="mt-auto flex flex-wrap gap-x-5 gap-y-2">
@@ -62,7 +62,7 @@ export default function VisitPage() {
             </article>
             <article className="flex flex-col gap-3.5 rounded-3xl bg-cream p-8">
               <span className="text-lg font-semibold text-forest">Opening hours</span>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1 tabular-nums">
                 <span className="text-lg font-semibold text-black">Monday – Saturday</span>
                 <span className="text-lg leading-normal text-black">9:30 AM – 1:00 PM</span>
                 <span className="text-lg leading-normal text-black">5:00 PM – 9:00 PM</span>
