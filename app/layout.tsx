@@ -46,7 +46,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
         <a
           href="#main"
-          className="sr-only rounded-full bg-white px-5 py-3 text-lg font-semibold text-forest focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70]"
+          // Not focus:not-sr-only: it also resets padding to 0, which overrode px-5 py-3 when focused.
+          className="sr-only rounded-full bg-white px-5 py-3 text-lg font-semibold text-forest focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:m-0 focus:h-auto focus:w-auto focus:overflow-visible focus:whitespace-nowrap focus:[clip-path:none]"
         >
           Skip to content
         </a>

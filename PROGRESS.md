@@ -33,8 +33,9 @@ Design handoff (not in repo): `E:\sai\Physiotherapy clinic design systems-handof
 - [x] Step 5: secret scan clean (no `.env*`, no key/token patterns); `.gitignore` covers node_modules, .next, .env*,
       Lighthouse reports, `.claude/`, `.vercel`, and large source PNGs in `public/images/` (kept locally, not used).
       One commit on `main`, pushed to the user's private repo github.com/kattideviprasad/sai-suraksha-website.
-- [ ] Vercel: user imports the repo on vercel.com (Vercel CLI skipped by request). Once a real domain exists, set
-      `NEXT_PUBLIC_SITE_URL` in Vercel project settings.
+- [x] Vercel: user imported the repo on vercel.com (Vercel CLI skipped by request); production is
+      https://sai-suraksha-website.vercel.app.
+- [ ] Once a real domain exists, set `NEXT_PUBLIC_SITE_URL` in Vercel project settings.
 
 ## Final cut (branch `final-cut`) — plan in `PLAN.md`
 - [x] Step 0 (2026-10-24): branch `final-cut` created from `main` (f5b39dd); project re-read and summarised in
@@ -110,8 +111,14 @@ Design handoff (not in repo): `E:\sai\Physiotherapy clinic design systems-handof
 - [ ] **Review cards pending real data**: add the clinic's real Google reviews to `data/reviews.json`
       (`[{ "name", "rating", "text", "date"? }]`, text verbatim). The band appears automatically (max 10, file order).
       Then: recheck card heights with real text (names that wrap make cards taller on phones) and Home Lighthouse.
-- [ ] Step 5: secret scan, one commit on `final-cut`, push, Vercel preview → user says "merge" → fast-forward `main`,
-      push, verify production, delete `final-cut`. · [ ] Step 4 Verify ×2 · [ ] Step 5 Commit (no push)
+- [x] Step 5 (2026-10-24): staged files scanned (no `.env*` files, no key/token/private-key patterns; `.env*`,
+      `.vercel`, `.next`, `node_modules`, `.claude` ignored); one commit `90d2797` on `final-cut`, pushed. Vercel
+      preview checked Ready by the user.
+- [x] Merge: `main` fast-forwarded to `90d2797` (no merge commit) and pushed; production
+      https://sai-suraksha-website.vercel.app verified serving the new version (header shadow on scroll, skip link,
+      no testimonials band, schema `@id` on the production URL). `final-cut` deleted locally and on GitHub.
+- [x] Follow-up: skip link had no padding when focused (`focus:not-sr-only` also resets padding to 0) → replaced with
+      the individual focus utilities so `px-5 py-3` applies; verified as a padded pill on Tab.
 
 ## Lighthouse (local `next start`, Lighthouse 12, single runs; Perf / A11y / Best practices / SEO)
 Mobile = simulated slow 4G + 4× CPU. Mobile perf varies ±5–8 between runs (mostly TBT from React hydration).
